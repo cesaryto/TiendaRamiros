@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TiendaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="Id_Prod" />
+          </Key>
+          <Property Name="Id_Prod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_TipoProd" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id_TipoUnidad" Type="int" Nullable="false" />
+          <Property Name="Disponible" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Valor_Unidad" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="TipoProd">
+          <Key>
+            <PropertyRef Name="Id_TipoProd" />
+          </Key>
+          <Property Name="Id_TipoProd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoUnidad">
+          <Key>
+            <PropertyRef Name="Id_TipoUnidad" />
+          </Key>
+          <Property Name="Id_TipoUnidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VentaProducto">
+          <Key>
+            <PropertyRef Name="Id_VentaProducto" />
+          </Key>
+          <Property Name="Id_VentaProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Venta" Type="int" Nullable="false" />
+          <Property Name="Id_Producto" Type="int" Nullable="false" />
+          <Property Name="Unidades" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="Id_Venta" />
+          </Key>
+          <Property Name="Id_Venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha_Hora" Type="datetime" Nullable="false" />
+          <Property Name="Valor" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Productos_TipoProd">
+          <End Role="TipoProd" Type="Self.TipoProd" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProd">
+              <PropertyRef Name="Id_TipoProd" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="Id_TipoProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_TipoUnidad">
+          <End Role="TipoUnidad" Type="Self.TipoUnidad" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUnidad">
+              <PropertyRef Name="Id_TipoUnidad" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="Id_TipoUnidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentaProducto_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="VentaProducto" Type="Self.VentaProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id_Prod" />
+            </Principal>
+            <Dependent Role="VentaProducto">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentaProducto_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="VentaProducto" Type="Self.VentaProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_Venta" />
+            </Principal>
+            <Dependent Role="VentaProducto">
+              <PropertyRef Name="Id_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TiendaDBModelStoreContainer">
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProd" EntityType="Self.TipoProd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUnidad" EntityType="Self.TipoUnidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VentaProducto" EntityType="Self.VentaProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Productos_TipoProd" Association="Self.FK_Productos_TipoProd">
+            <End Role="TipoProd" EntitySet="TipoProd" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_TipoUnidad" Association="Self.FK_Productos_TipoUnidad">
+            <End Role="TipoUnidad" EntitySet="TipoUnidad" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentaProducto_Productos" Association="Self.FK_VentaProducto_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="VentaProducto" EntitySet="VentaProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentaProducto_Ventas" Association="Self.FK_VentaProducto_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="VentaProducto" EntitySet="VentaProducto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TiendaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="Id_Prod" />
+          </Key>
+          <Property Name="Id_Prod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_TipoProd" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_TipoUnidad" Type="Int32" Nullable="false" />
+          <Property Name="Disponible" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Valor_Unidad" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="TipoProd" Relationship="Self.FK_Productos_TipoProd" FromRole="Productos" ToRole="TipoProd" />
+          <NavigationProperty Name="TipoUnidad" Relationship="Self.FK_Productos_TipoUnidad" FromRole="Productos" ToRole="TipoUnidad" />
+          <NavigationProperty Name="VentaProducto" Relationship="Self.FK_VentaProducto_Productos" FromRole="Productos" ToRole="VentaProducto" />
+        </EntityType>
+        <EntityType Name="TipoProd">
+          <Key>
+            <PropertyRef Name="Id_TipoProd" />
+          </Key>
+          <Property Name="Id_TipoProd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_TipoProd" FromRole="TipoProd" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="TipoUnidad">
+          <Key>
+            <PropertyRef Name="Id_TipoUnidad" />
+          </Key>
+          <Property Name="Id_TipoUnidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_TipoUnidad" FromRole="TipoUnidad" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="VentaProducto">
+          <Key>
+            <PropertyRef Name="Id_VentaProducto" />
+          </Key>
+          <Property Name="Id_VentaProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Venta" Type="Int32" Nullable="false" />
+          <Property Name="Id_Producto" Type="Int32" Nullable="false" />
+          <Property Name="Unidades" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK_VentaProducto_Productos" FromRole="VentaProducto" ToRole="Productos" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK_VentaProducto_Ventas" FromRole="VentaProducto" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="Id_Venta" />
+          </Key>
+          <Property Name="Id_Venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha_Hora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Valor" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="VentaProducto" Relationship="Self.FK_VentaProducto_Ventas" FromRole="Ventas" ToRole="VentaProducto" />
+        </EntityType>
+        <Association Name="FK_Productos_TipoProd">
+          <End Role="TipoProd" Type="Self.TipoProd" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProd">
+              <PropertyRef Name="Id_TipoProd" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="Id_TipoProd" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Productos_TipoUnidad">
+          <End Role="TipoUnidad" Type="Self.TipoUnidad" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUnidad">
+              <PropertyRef Name="Id_TipoUnidad" />
+            </Principal>
+            <Dependent Role="Productos">
+              <PropertyRef Name="Id_TipoUnidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentaProducto_Productos">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+          <End Role="VentaProducto" Type="Self.VentaProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id_Prod" />
+            </Principal>
+            <Dependent Role="VentaProducto">
+              <PropertyRef Name="Id_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentaProducto_Ventas">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="1" />
+          <End Role="VentaProducto" Type="Self.VentaProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="Id_Venta" />
+            </Principal>
+            <Dependent Role="VentaProducto">
+              <PropertyRef Name="Id_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TiendaDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="TipoProd" EntityType="Self.TipoProd" />
+          <EntitySet Name="TipoUnidad" EntityType="Self.TipoUnidad" />
+          <EntitySet Name="VentaProducto" EntityType="Self.VentaProducto" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+          <AssociationSet Name="FK_Productos_TipoProd" Association="Self.FK_Productos_TipoProd">
+            <End Role="TipoProd" EntitySet="TipoProd" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_TipoUnidad" Association="Self.FK_Productos_TipoUnidad">
+            <End Role="TipoUnidad" EntitySet="TipoUnidad" />
+            <End Role="Productos" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentaProducto_Productos" Association="Self.FK_VentaProducto_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="VentaProducto" EntitySet="VentaProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentaProducto_Ventas" Association="Self.FK_VentaProducto_Ventas">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="VentaProducto" EntitySet="VentaProducto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TiendaDBModelStoreContainer" CdmEntityContainer="TiendaDBEntities">
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="TiendaDBModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="Id_Prod" ColumnName="Id_Prod" />
+                <ScalarProperty Name="Id_TipoProd" ColumnName="Id_TipoProd" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id_TipoUnidad" ColumnName="Id_TipoUnidad" />
+                <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+                <ScalarProperty Name="Valor_Unidad" ColumnName="Valor_Unidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoProd">
+            <EntityTypeMapping TypeName="TiendaDBModel.TipoProd">
+              <MappingFragment StoreEntitySet="TipoProd">
+                <ScalarProperty Name="Id_TipoProd" ColumnName="Id_TipoProd" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUnidad">
+            <EntityTypeMapping TypeName="TiendaDBModel.TipoUnidad">
+              <MappingFragment StoreEntitySet="TipoUnidad">
+                <ScalarProperty Name="Id_TipoUnidad" ColumnName="Id_TipoUnidad" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VentaProducto">
+            <EntityTypeMapping TypeName="TiendaDBModel.VentaProducto">
+              <MappingFragment StoreEntitySet="VentaProducto">
+                <ScalarProperty Name="Id_VentaProducto" ColumnName="Id_VentaProducto" />
+                <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+                <ScalarProperty Name="Unidades" ColumnName="Unidades" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas">
+            <EntityTypeMapping TypeName="TiendaDBModel.Ventas">
+              <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+                <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

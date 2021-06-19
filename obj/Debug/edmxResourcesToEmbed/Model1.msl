@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TiendaDBModelStoreContainer" CdmEntityContainer="TiendaDBEntities">
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="TiendaDBModel.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="Id_Prod" ColumnName="Id_Prod" />
+          <ScalarProperty Name="Id_TipoProd" ColumnName="Id_TipoProd" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Id_TipoUnidad" ColumnName="Id_TipoUnidad" />
+          <ScalarProperty Name="Disponible" ColumnName="Disponible" />
+          <ScalarProperty Name="Valor_Unidad" ColumnName="Valor_Unidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoProd">
+      <EntityTypeMapping TypeName="TiendaDBModel.TipoProd">
+        <MappingFragment StoreEntitySet="TipoProd">
+          <ScalarProperty Name="Id_TipoProd" ColumnName="Id_TipoProd" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoUnidad">
+      <EntityTypeMapping TypeName="TiendaDBModel.TipoUnidad">
+        <MappingFragment StoreEntitySet="TipoUnidad">
+          <ScalarProperty Name="Id_TipoUnidad" ColumnName="Id_TipoUnidad" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VentaProducto">
+      <EntityTypeMapping TypeName="TiendaDBModel.VentaProducto">
+        <MappingFragment StoreEntitySet="VentaProducto">
+          <ScalarProperty Name="Id_VentaProducto" ColumnName="Id_VentaProducto" />
+          <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+          <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+          <ScalarProperty Name="Unidades" ColumnName="Unidades" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ventas">
+      <EntityTypeMapping TypeName="TiendaDBModel.Ventas">
+        <MappingFragment StoreEntitySet="Ventas">
+          <ScalarProperty Name="Id_Venta" ColumnName="Id_Venta" />
+          <ScalarProperty Name="Fecha_Hora" ColumnName="Fecha_Hora" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

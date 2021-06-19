@@ -1,0 +1,16 @@
+C:\Users\cesar\source\repos\TiendaRamiros\bin\Debug\TiendaRamiros.exe.config
+C:\Users\cesar\source\repos\TiendaRamiros\bin\Debug\TiendaRamiros.exe
+C:\Users\cesar\source\repos\TiendaRamiros\bin\Debug\TiendaRamiros.pdb
+C:\Users\cesar\source\repos\TiendaRamiros\bin\Debug\EntityFramework.dll
+C:\Users\cesar\source\repos\TiendaRamiros\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\cesar\source\repos\TiendaRamiros\bin\Debug\EntityFramework.xml
+C:\Users\cesar\source\repos\TiendaRamiros\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.csprojAssemblyReference.cache
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.Form1.resources
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.Properties.Resources.resources
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.csproj.GenerateResource.cache
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.csproj.CopyComplete
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.exe
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.pdb
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.Presentacion.FormAgregarDisponibilidad.resources
+C:\Users\cesar\source\repos\TiendaRamiros\obj\Debug\TiendaRamiros.csproj.CoreCompileInputs.cache
