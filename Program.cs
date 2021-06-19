@@ -18,6 +18,7 @@ namespace TiendaRamiros
             Application.SetCompatibleTextRenderingDefault(false);
             //comentario
             //otro comentario
+            //otro mas
             Application.Run(new Form1());
         }
     }
