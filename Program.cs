@@ -16,6 +16,7 @@ namespace TiendaRamiros
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //comentario
             Application.Run(new Form1());
         }
     }
